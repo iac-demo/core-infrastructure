@@ -1,10 +1,14 @@
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
     }
+}
+
+plugins {
+    id 'com.bmuschko.docker-remote-api' version '4.4.1'
 }
 
 apply plugin: 'java'
@@ -14,12 +18,12 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 bootJar {
-    baseName = 'gs-spring-boot'
-    version =  '0.1.0'
+    baseName = 'hello-world'
+    version =  ''
 }
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 sourceCompatibility = 1.8
@@ -30,3 +34,11 @@ dependencies {
     testCompile("junit:junit")
 }
 
+// Import task types
+import com.bmuschko.gradle.docker.tasks.image.*
+
+// Use task types
+task dockerBuild(type: DockerBuildImage) {
+    inputDir = file('./')
+    tags.add('hello-world:latest')
+}
