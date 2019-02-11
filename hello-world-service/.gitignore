@@ -1,4 +1,6 @@
-build/
 .gradle/
-.idea
+.idea/
+build/
 *.iml
+terraform/terraform.tfstate*
+terraform/.terraform
