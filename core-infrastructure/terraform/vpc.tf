@@ -17,8 +17,15 @@ resource "aws_subnet" "us-west-2a-public" {
   cidr_block = "10.0.1.0/24"
   availability_zone = "us-west-2a"
 }
+resource "aws_subnet" "us-west-2b-public" {
+  vpc_id = "${aws_vpc.iacdemo_vpc.id}"
 
-resource "aws_route_table" "us-west-2a-public" {
+  cidr_block = "10.0.2.0/24"
+  availability_zone = "us-west-2b"
+}
+
+
+resource "aws_route_table" "main" {
   vpc_id = "${aws_vpc.iacdemo_vpc.id}"
 
   route {
@@ -29,8 +36,14 @@ resource "aws_route_table" "us-west-2a-public" {
 
 resource "aws_route_table_association" "us-west-2a-public" {
   subnet_id = "${aws_subnet.us-west-2a-public.id}"
-  route_table_id = "${aws_route_table.us-west-2a-public.id}"
+  route_table_id = "${aws_route_table.main.id}"
 }
+
+resource "aws_route_table_association" "us-west-2b-public" {
+  subnet_id = "${aws_subnet.us-west-2b-public.id}"
+  route_table_id = "${aws_route_table.main.id}"
+}
+
 
 terraform {
   backend "s3" {
