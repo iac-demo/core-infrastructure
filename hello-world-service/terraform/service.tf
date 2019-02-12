@@ -9,6 +9,18 @@ terraform {
   }
 }
 
-resource "aws_ecr_repository" "helloworld" {
-  name = "helloworld"
+variable "corebucket" {
+  default = "iacdemo"
 }
+
+data "terraform_remote_state" "core" {
+  backend = "s3"
+  config {
+    key    = "iacdemo.tfstate"
+    region = "us-west-2"
+    bucket = "${var.corebucket}"
+  }
+}
+
+
+
