@@ -65,7 +65,18 @@ task terraform(type: TerraformTask) {
     description "Runs a terraform script"
     tfDir       = "${projectDir}/terraform"
     tfAction    = project.hasProperty("tfAction") ? project.property('tfAction') : "plan -input=false"
-    tfInitParams = "-input=false -backend-config=bucket=iacdemo -force-copy"
+    tfInitParams = "-input=false -backend-config=bucket=iacdemo"
+
+    terraformBaseDir = "/opt/terraform"
+    terraformVersion = "0.11.11"
+}
+
+
+task modularTerraform(type: TerraformTask) {
+    description "Runs a terraform script"
+    tfDir       = "${projectDir}/modular_terraform"
+    tfAction    = project.hasProperty("tfAction") ? project.property('tfAction') : "plan -input=false"
+    tfInitParams = "-input=false -backend-config=bucket=iacdemo"
 
     terraformBaseDir = "/opt/terraform"
     terraformVersion = "0.11.11"
