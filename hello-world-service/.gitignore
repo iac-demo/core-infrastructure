@@ -4,3 +4,5 @@ build/
 *.iml
 terraform/terraform.tfstate*
 terraform/.terraform
+modular_terraform/terraform.tfstate*
+modular_terraform/.terraform
