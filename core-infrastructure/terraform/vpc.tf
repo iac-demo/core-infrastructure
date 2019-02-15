@@ -17,6 +17,7 @@ resource "aws_subnet" "us-west-2a-public" {
   cidr_block = "10.0.1.0/24"
   availability_zone = "us-west-2a"
 }
+
 resource "aws_subnet" "us-west-2b-public" {
   vpc_id = "${aws_vpc.iacdemo_vpc.id}"
 

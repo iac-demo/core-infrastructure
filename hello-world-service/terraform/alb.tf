@@ -2,6 +2,7 @@ resource "aws_alb" "hello-world" {
   name            = "hello-world"
   subnets         = ["${data.terraform_remote_state.core.public_subnet_a_id}","${data.terraform_remote_state.core.public_subnet_b_id}"]
   security_groups = ["${data.terraform_remote_state.core.web_alb_sg_id}"]
+  vpc_id          = "${data.terraform_remote_state.core.vpc_id}"
 }
 
 resource "aws_alb_target_group" "hello-world" {
