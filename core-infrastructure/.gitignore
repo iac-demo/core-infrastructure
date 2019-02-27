@@ -1,6 +1,0 @@
-.gradle/
-.idea/
-build/
-*.iml
-terraform/terraform.tfstate*
-terraform/.terraform
