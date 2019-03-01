@@ -50,5 +50,6 @@ terraform {
   backend "s3" {
     key    = "iacdemo.tfstate"
     region = "us-west-2"
+    bucket = "iacdemo"
   }
 }
