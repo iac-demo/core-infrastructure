@@ -11,8 +11,20 @@ task terraform(type: com.roku.henka.TerraformTask) {
     description "Runs a terraform script"
     tfDir       = "${projectDir}/terraform"
     tfAction    = project.hasProperty("tfAction") ? project.property('tfAction') : "plan -input=false"
-    tfInitParams = "-input=false -backend-config=bucket=iacdemo"
+    tfInitParams = "-input=false -backend-config=bucket=${System.getenv().get('TF_VAR_s3_state_bucket')}"
 
     terraformBaseDir = "/opt/terraform"
     terraformVersion = "0.11.11"
+}
+
+private void checkEnvVars() {
+    if (!System.getenv().containsKey("TF_VAR_aws_region")) {
+        throw new GradleException("Please set TF_VAR_aws_region env var before continuing.")
+    }
+    if (!System.getenv().containsKey("TF_VAR_aws_account_id")) {
+        throw new GradleException("Please set TF_VAR_aws_account_id env var before continuing.")
+    }
+    if (!System.getenv().containsKey("TF_VAR_s3_state_bucket")) {
+        throw new GradleException("Please set TF_VAR_s3_state_bucket env var before continuing.")
+    }
 }

@@ -1,2 +1,4 @@
 .gradle
-
+.idea/
+core-infrastructure.iml
+terraform/.terraform/

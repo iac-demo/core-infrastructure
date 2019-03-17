@@ -25,7 +25,6 @@ resource "aws_subnet" "us-west-2b-public" {
   availability_zone = "us-west-2b"
 }
 
-
 resource "aws_route_table" "main" {
   vpc_id = "${aws_vpc.iacdemo_vpc.id}"
 
@@ -45,11 +44,9 @@ resource "aws_route_table_association" "us-west-2b-public" {
   route_table_id = "${aws_route_table.main.id}"
 }
 
-
 terraform {
   backend "s3" {
     key    = "iacdemo.tfstate"
     region = "us-west-2"
-    bucket = "iacdemo"
   }
 }
