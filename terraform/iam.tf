@@ -20,7 +20,7 @@ EOF
 
 resource "aws_iam_role_policy" "ecs_task" {
   name = "ecs_task"
-  role = "${aws_iam_role.ecs_task.id}"
+  role = aws_iam_role.ecs_task.id
 
   policy = <<EOF
 {
