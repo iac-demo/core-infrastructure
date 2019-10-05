@@ -14,7 +14,7 @@ task terraform(type: com.roku.henka.TerraformTask) {
     tfInitParams = "-input=false -backend-config=bucket=${System.getenv().get('TF_VAR_s3_state_bucket')}"
 
     terraformBaseDir = "/opt/terraform"
-    terraformVersion = "0.11.11"
+    terraformVersion = "0.12.9"
 }
 
 private void checkEnvVars() {
