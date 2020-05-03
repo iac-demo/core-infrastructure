@@ -16,9 +16,22 @@ export TF_VAR_s3_state_bucket=<s3_bucket_name_for_project_state>
 ```
 
 # Provisioning Core Infrastructure
-After setting up your configuration, you need to execute the following commands to provision your infrastructure and deploy your project.
 
-Please note that terraform commands are executed through [Henka](https://github.com/roku-oss/henka) Gradle plugin.
+## Using Terraform
+You will need terraform v0.12.x installed and available on your path.
+After you set up your configuration, you need to execute the following commands:
+
+```
+cd terraform                                # go into a folder with Terraform definitions
+terraform init                              # initialize Terraform remote state and plugins
+terraform plan -input=false                 # preview changes to be deployed
+terraform apply -input=false -auto-approve  # deploy core infrastructure
+```
+
+
+## Using Gradle plugin (Henka)
+Alternatively, you can execute your Terraform commands
+through [Henka](https://github.com/roku-oss/henka) Gradle plugin.
 It takes care of installing the right version of Terraform and initializing Terraform backends and plugins.
 
 However, it prints out the actual Terraform commands into stdout, so if you're interested, you can inspect
