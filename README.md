@@ -22,9 +22,13 @@ You will need terraform v0.12.x installed and available on your path.
 After you set up your configuration, you need to execute the following commands:
 
 ```
-cd terraform                                # go into a folder with Terraform definitions
-terraform init                              # initialize Terraform remote state and plugins
-terraform plan -input=false                 # preview changes to be deployed
+# go into a folder with Terraform definitions
+cd terraform
+# initialize Terraform remote state and plugins
+terraform init -input=false -backend-config=bucket=$TF_VAR_s3_state_bucket
+# preview changes to be deployed
+terraform plan -input=false                 
+# deploy infrastructure
 terraform apply -input=false -auto-approve  # deploy core infrastructure
 ```
 
